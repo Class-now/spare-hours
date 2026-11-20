@@ -42,8 +42,8 @@ a { color: var(--pine); }
 footer { max-width: 1200px; margin: 0 auto; padding: 16px; border-top: 1px solid var(--rule); font-size: 13px; color: var(--muted); }
 
 /* The assistant's colors, after assistant.css. */
-.assistant { margin-top: 0; }
-#agent-app {
+.side .assistant { margin-top: 0; }
+.side #agent-app {
   --ns-primary: #1f5f4a;
   --ns-accent: #7a4a12;
   --ns-border: #d3ddd6;
