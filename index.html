@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Spare Hours — does it fit your week?</title>
+  <meta name="description" content="An open agentic website that checks whether contest entries and side projects fit the free hours in your week. Its assistant asks Deadline Desk, another agent website, what is open, and other agent websites can use its effort calculator.">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="assistant.css">
+  <script type="module" src="js/week.js"></script>
+  <script type="module" src="site.js"></script>
+</head>
+<body>
+  <header class="masthead">
+    <p class="kicker">Open agentic website · agent network at <code>spare_hours.network.json</code></p>
+    <h1>Spare Hours</h1>
+    <p class="lede">You have a job or classes, and a few hours left over. Put those hours in, add what you want to finish and when it is due, and see what fits before you promise anything.</p>
+  </header>
+
+  <main>
+    <div class="week">
+      <section aria-labelledby="hours-heading">
+        <h2 id="hours-heading">Your free hours</h2>
+        <form id="hours-form" class="hours">
+          <label>Mon <input id="h-mon" type="number" min="0" max="16" step="0.5"></label>
+          <label>Tue <input id="h-tue" type="number" min="0" max="16" step="0.5"></label>
+          <label>Wed <input id="h-wed" type="number" min="0" max="16" step="0.5"></label>
+          <label>Thu <input id="h-thu" type="number" min="0" max="16" step="0.5"></label>
+          <label>Fri <input id="h-fri" type="number" min="0" max="16" step="0.5"></label>
+          <label>Sat <input id="h-sat" type="number" min="0" max="16" step="0.5"></label>
+          <label>Sun <input id="h-sun" type="number" min="0" max="16" step="0.5"></label>
+          <button type="submit">Save hours</button>
+          <p id="hours-message" class="message" role="alert"></p>
+        </form>
+        <p id="hours-total" class="count" role="status"></p>
+      </section>
+
+      <section aria-labelledby="commitments-heading">
+        <h2 id="commitments-heading">What you want to finish</h2>
+        <p id="fit-summary" class="summary" role="status"></p>
+        <p id="commitments-empty" class="muted">Nothing yet. Add something below, or ask the assistant.</p>
+        <ul id="commitments-list" class="commitments"></ul>
+        <form id="commitment-form" class="commitment-form">
+          <label class="wide">What
+            <input id="c-label" type="text" maxlength="80" placeholder="e.g. Open Agentic Web Challenge">
+          </label>
+          <label>Kind
+            <select id="c-kind">
+              <option value="custom">My own hours</option>
+              <option value="hackathon">Hackathon · 40 h</option>
+              <option value="data-science">Data science · 50 h</option>
+              <option value="film">Film · 30 h</option>
+              <option value="essay-prize">Essay prize · 25 h</option>
+              <option value="writing">Writing · 20 h</option>
+              <option value="design">Design · 18 h</option>
+              <option value="business-idea">Business idea · 15 h</option>
+              <option value="poetry">Poetry · 3 h</option>
+            </select>
+          </label>
+          <label>Hours
+            <input id="c-hours" type="number" min="0.5" max="400" step="0.5" placeholder="typical">
+          </label>
+          <label>Due
+            <input id="c-dueDate" type="date">
+          </label>
+          <button type="submit">Add</button>
+          <p id="commitment-message" class="message" role="alert"></p>
+        </form>
+        <p class="muted">Hours by kind are typical for a first entry, start to submit. Work is planned to finish the day before each due date, earliest due date first.</p>
+        <p class="muted">Looking for something to enter? <a id="partner-link" href="https://deadline-desk-agent.vercel.app/" target="_blank" rel="noopener">Deadline Desk</a> lists open prize contests and hackathons with their deadlines. The assistant here can ask it for you.</p>
+      </section>
+    </div>
+
+    <aside class="side">
+      <section id="assistant" class="assistant" aria-labelledby="assistant-heading">
+        <h2 id="assistant-heading">Ask Spare Hours</h2>
+        <p>Ask in plain words: whether an entry fits before its deadline, when to start, or what is open on Deadline Desk that your week has room for.</p>
+        <p class="assistant-note">Your messages and this page's data go to the LLM provider you choose in the settings below. Before the assistant asks Deadline Desk anything, a card shows you the request, and you decide.</p>
+        <p id="assistant-status" role="status">Connecting the assistant… If this message stays, the assistant could not load. You can still use the page directly.</p>
+        <div id="agent-app">
+          <div data-ns-slot="header"></div>
+          <div class="assistant-panels">
+            <div data-ns-slot="chat"></div>
+            <div data-ns-slot="agents"></div>
+          </div>
+          <div data-ns-slot="settings"></div>
+        </div>
+      </section>
+    </aside>
+  </main>
+
+  <footer>
+    <p>Your hours and your list stay in this browser. Dates are calendar days where you are.</p>
+    <p>For other agent websites: manifest <a href="agent-manifest.json">agent-manifest.json</a>, network <a href="spare_hours.network.json">spare_hours.network.json</a>, discovery <a href=".well-known/nsdeploy.json">.well-known/nsdeploy.json</a>. The effort calculator is shared through the action bridge. Open source under the MIT license.</p>
+  </footer>
+</body>
+</html>

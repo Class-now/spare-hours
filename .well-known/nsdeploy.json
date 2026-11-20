@@ -1,0 +1,18 @@
+{
+  "protocol": "nsdeploy-link/v1",
+  "exports": [
+    {
+      "network": "spare_hours",
+      "front_man": "spare_hours_assistant",
+      "aliases": [
+        "spare_hours",
+        "spare_hours_assistant"
+      ],
+      "url": "spare_hours"
+    }
+  ],
+  "imports": [],
+  "link_updates": {
+    "mode": "browser-local"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "name": "spare-hours",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "An open agentic website that checks whether contest entries and side projects fit the free hours in your week.",
+  "license": "MIT",
+  "engines": { "node": ">=22" },
+  "scripts": {
+    "test": "node --test \"tests/*.test.mjs\""
+  }
+}

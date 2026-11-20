@@ -1,0 +1,81 @@
+{
+  "brand": "Spare Hours Assistant",
+  "networks": [
+    {
+      "name": "spare_hours",
+      "front_man": "spare_hours_assistant",
+      "hocon": "./spare_hours.network.json",
+      "description": "See whether a contest entry or side project fits the free hours in your week, and ask Deadline Desk what is open.",
+      "tags": [
+        "agentified-website"
+      ],
+      "sample_queries": [
+        "I have 11 free hours a week. Could I finish a hackathon project that is due in six weeks?",
+        "Ask Deadline Desk which hackathons that allow generative AI close in the next eight weeks, and tell me which ones fit my week.",
+        "Make my Saturdays 5 hours and my Wednesdays 0.",
+        "Add an essay prize entry due in four weeks, and tell me if everything still fits.",
+        "Can you put these in my Google Calendar and remind me?"
+      ]
+    }
+  ],
+  "llm_router": {
+    "base_url": "https://api.otari.ai/api/v1",
+    "mock": false,
+    "byok_router": "https://api.otari.ai/api/v1"
+  },
+  "allowed_peers": ["https://deadline-desk-agent.vercel.app"],
+  "peer_policy": {
+    "mode": "closed",
+    "deny_origins": [],
+    "note": "Local agents and page-local actions, plus the partner site in allowed_peers, Deadline Desk, which is called only after the visitor agrees on a consent card. Other agent sites may call this network; its bridge shares one public calculator with them."
+  },
+  "agent_mcp": {
+    "protocol": "nsdeploy-agent-mcp/v1",
+    "network": "spare_hours",
+    "front_man": "spare_hours_assistant",
+    "available": false,
+    "reason": "This is a static bundle; a public MCP facade requires an application host."
+  },
+  "theme": {
+    "primary": "#1f5f4a"
+  },
+  "linking": {
+    "protocol": "nsdeploy-link/v1",
+    "exports": [
+      {
+        "network": "spare_hours",
+        "front_man": "spare_hours_assistant",
+        "aliases": [
+          "spare_hours",
+          "spare_hours_assistant"
+        ],
+        "url": "spare_hours"
+      }
+    ],
+    "imports": [],
+    "link_updates": {
+      "mode": "browser-local"
+    }
+  },
+  "deployment": {
+    "mode": "static",
+    "self_contained_runtime": true,
+    "browser_mock": false,
+    "direct_byok": true,
+    "direct_mcp_requires_cors": true,
+    "public_mcp_facade": false
+  },
+  "actions": {
+    "version": 1,
+    "module": "./site-actions.js",
+    "bridge": "./bridge/action-bridge.html",
+    "agentTools": [
+      "get_week_state",
+      "set_weekly_hours",
+      "add_commitment",
+      "remove_commitment",
+      "check_fit",
+      "estimate_effort"
+    ]
+  }
+}
