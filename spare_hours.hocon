@@ -23,7 +23,7 @@
     },
 
     "link_labels": {
-        "https://deadline-desk-agent.vercel.app/deadline_desk": "Deadline Desk"
+        "https://deadline-desk-agent.pages.dev/deadline_desk": "Deadline Desk"
     },
 
     "commondefs": {
@@ -94,7 +94,7 @@ How to work:
 {partner_rules}
 {cruse_rules}
 """,
-            "tools": ["https://deadline-desk-agent.vercel.app/deadline_desk"]
+            "tools": ["https://deadline-desk-agent.pages.dev/deadline_desk"]
         }
     ]
 }

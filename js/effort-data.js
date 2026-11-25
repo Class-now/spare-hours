@@ -19,6 +19,6 @@ export const KINDS = Object.keys(EFFORT);
 /** Where the page sends a visitor who is looking for something to enter. */
 export const PARTNER = {
   name: "Deadline Desk",
-  url: "https://deadline-desk-agent.vercel.app/",
+  url: "https://deadline-desk-agent.pages.dev/",
   offers: "open prize contests and hackathons, with deadlines, prizes and rules on AI",
 };

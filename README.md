@@ -11,12 +11,12 @@ Worldwide Agentic Web MVP spec. It runs in your browser on your own LLM key, ans
 from the page's data, and acts through the same functions as the page's forms.
 
 Spare Hours knows nothing about contests. For that it asks another agentic website,
-[Deadline Desk](https://deadline-desk-agent.vercel.app/), after you agree on a consent
+[Deadline Desk](https://deadline-desk-agent.pages.dev/), after you agree on a consent
 card, and then tests what Deadline Desk listed against your own week. Neither site holds
 the other's data: the deadlines stay on Deadline Desk, and your hours stay in your browser.
 
-- Live site: https://spare-hours-agent.vercel.app/
-- Network URL (what another agent site puts in its `tools`): https://spare-hours-agent.vercel.app/spare_hours
+- Live site: https://spare-hours-agent.pages.dev/
+- Network URL (what another agent site puts in its `tools`): https://spare-hours-agent.pages.dev/spare_hours
   (manifest: `agent-manifest.json`, network: `spare_hours.network.json`)
 
 ## What the assistant can do
@@ -36,7 +36,7 @@ action needs a confirmation dialog.
 
 ## Linked site: Deadline Desk
 
-- Partner network: `https://deadline-desk-agent.vercel.app/deadline_desk`.
+- Partner network: `https://deadline-desk-agent.pages.dev/deadline_desk`.
 - Before anything is fetched from Deadline Desk, the chat shows a consent card with its
   name, its host and the first 140 characters of the request. **Always allow** skips the
   card for that host until the page is reloaded.
@@ -59,14 +59,14 @@ no write is shared.
 
 To call Spare Hours from your agent site:
 
-1. Put `"https://spare-hours-agent.vercel.app/spare_hours"` in the calling agent's `tools`.
-2. Put `"https://spare-hours-agent.vercel.app"` in your manifest's `allowed_peers`.
-3. Label it in your `.hocon`: `"link_labels": {"https://spare-hours-agent.vercel.app/spare_hours": "Spare Hours"}`.
+1. Put `"https://spare-hours-agent.pages.dev/spare_hours"` in the calling agent's `tools`.
+2. Put `"https://spare-hours-agent.pages.dev"` in your manifest's `allowed_peers`.
+3. Label it in your `.hocon`: `"link_labels": {"https://spare-hours-agent.pages.dev/spare_hours": "Spare Hours"}`.
 4. Tell your agent when to ask, for example: "To learn how long an entry takes, ask
    spare_hours with the kind of entry, the hours a week and the due date."
 
 ```shell
-node skills/agentify-website/scripts/check_partner.mjs https://spare-hours-agent.vercel.app/spare_hours --origin <your origin>
+node skills/agentify-website/scripts/check_partner.mjs https://spare-hours-agent.pages.dev/spare_hours --origin <your origin>
 ```
 
 ## Files
@@ -113,7 +113,7 @@ the consent card's focus. They use the real runtime with a scripted model and ca
 
 ## Hosting
 
-Static files only. `vercel.json` sends `Access-Control-Allow-Origin: *` on the manifest,
+Static files only, on Cloudflare Pages. `_headers` sends `Access-Control-Allow-Origin: *` on the manifest,
 the network file, `links.json`, `agent-mcp.json` and `.well-known/`, and a restrictive
 Content-Security-Policy on `runtime/sandbox-worker.js`.
 

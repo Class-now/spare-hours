@@ -23,7 +23,7 @@
     "mock": false,
     "byok_router": "https://api.otari.ai/api/v1"
   },
-  "allowed_peers": ["https://deadline-desk-agent.vercel.app"],
+  "allowed_peers": ["https://deadline-desk-agent.pages.dev"],
   "peer_policy": {
     "mode": "closed",
     "deny_origins": [],

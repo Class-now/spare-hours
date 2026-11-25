@@ -16,7 +16,7 @@ import { ScriptedModel } from "./scripted_model.mjs";
 const NETWORK_NAME = "spare_hours";
 const READ_ACTION = "get_week_state";
 const WRITE_ACTION = "add_commitment";
-const PARTNER_URL = "https://deadline-desk-agent.vercel.app/deadline_desk";
+const PARTNER_URL = "https://deadline-desk-agent.pages.dev/deadline_desk";
 // The page's address in these tests. The DOM stand-in below uses it too: site.js gives
 // its own dialog only to actions from the page's origin.
 const BASE = "http://localhost:8080";
@@ -550,7 +550,7 @@ class AgentifiedSiteTest {
     document.provide("#ns-input", [chatInput]);
     AssistantMount.defaultConsent = AgentifiedSiteTest.pendingCard;
     const answer = AssistantMount.consent({
-      kind: "network", peerLabel: "Deadline Desk", peerOrigin: "deadline-desk-agent.vercel.app", requestText: "Which hackathons close by 2027-01-15?",
+      kind: "network", peerLabel: "Deadline Desk", peerOrigin: "deadline-desk-agent.pages.dev", requestText: "Which hackathons close by 2027-01-15?",
     });
     assert.equal(newest.card.getAttribute("role"), "group");
     assert.equal(newest.title.focused, true);
@@ -577,7 +577,7 @@ class AgentifiedSiteTest {
     try {
       AssistantMount.defaultConsent = AgentifiedSiteTest.pendingCard;
       const answer = AssistantMount.consent({
-        kind: "network", peerLabel: "Deadline Desk", peerOrigin: "deadline-desk-agent.vercel.app", requestText: "What is open?",
+        kind: "network", peerLabel: "Deadline Desk", peerOrigin: "deadline-desk-agent.pages.dev", requestText: "What is open?",
       });
       assert.equal(newest.card.getAttribute("role"), "group");
       assert.notEqual(newest.title.focused, true, "consent() took focus from the page's own form.");

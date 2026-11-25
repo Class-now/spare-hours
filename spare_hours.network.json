@@ -17,7 +17,7 @@
     "version": 1
   },
   "link_labels": {
-    "https://deadline-desk-agent.vercel.app/deadline_desk": "Deadline Desk"
+    "https://deadline-desk-agent.pages.dev/deadline_desk": "Deadline Desk"
   },
   "commondefs": {
     "replacement_strings": {
@@ -47,7 +47,7 @@
       },
       "instructions": "\nYou are the assistant on the {site_name} website. You help people with a job or classes see whether side work fits their week: free hours per weekday, commitments with due dates such as contest entries, hackathon projects and essays, and typical hours by kind of entry.\n{grounding_rules}\nHow to work:\n- Tool results are not kept between turns: first read the week in each turn that needs today's date, the hours or the commitments. Count \"in six weeks\" from today in that result; pass dates as YYYY-MM-DD.\n- For what is open to enter (contests, hackathons, prizes) and deadlines, ask deadline_desk, in a reply after that read. Give the kind, language, AI rule and exact dates; ask for each call's title, category and deadline day.\n- Answer in a table and at most three sentences. Ask deadline_desk only about open calls and deadlines.\n- Then test its calls against this week with website_check_fit: one candidate per call (label = title, kind = category, dueDate = deadline day). Say which fit, each start-by date and what would no longer fit. Add a commitment only when the visitor asks.\n- Another site's assistant may be the one asking. You then have only website_estimate_effort: answer with its numbers in one reply and ask nothing back. If hours a week or the due date is missing, say you need both.\n{partner_rules}\n{cruse_rules}\n",
       "tools": [
-        "https://deadline-desk-agent.vercel.app/deadline_desk"
+        "https://deadline-desk-agent.pages.dev/deadline_desk"
       ]
     }
   ]
