@@ -7,7 +7,8 @@ hours are to spare and what will not be done in time.
 
 The page has an embedded assistant built with the
 [agentify-website skill](https://github.com/cognizant-ai-labs/agentic-web) of the
-Worldwide Agentic Web MVP spec. It runs in your browser on your own LLM key, answers only
+Worldwide Agentic Web MVP spec. It runs in your browser, with no key needed (the site pays for a
+small daily allowance; your own key works too), answers only
 from the page's data, and acts through the same functions as the page's forms.
 
 Spare Hours knows nothing about contests. For that it asks another agentic website,
@@ -43,7 +44,7 @@ action needs a confirmation dialog.
 - A request holds the kind of call, language, AI rule and dates you asked about. The
   assistant is told never to put names, emails, phone numbers or booking codes in it. The
   runtime does not filter it, so check it on the card.
-- Deadline Desk's network runs in your browser on your key, with only the three public
+- Deadline Desk's network runs in your browser on this chat's model route, with only the three public
   reads its action bridge shares (the board's date, the search and the back-plan). A call
   costs more than the card's token estimate. Your hours and commitments are never sent to
   Deadline Desk: the fit is worked out on this page afterwards.
@@ -99,8 +100,9 @@ node --test "spare-hours/tests/*.test.mjs"
 node agentic-web/skills/agentify-website/scripts/serve_site.mjs spare-hours --port 8090
 ```
 
-Open the printed URL, add your key under **AI model settings** (the default router is
-hosted Otari; any OpenAI-compatible router that allows CORS works) and try:
+Open the printed URL, add your key under **AI model settings** (a local copy cannot use
+the hosted site's free route, which serves the site's own pages only; with a key, the
+router is hosted Otari, and any OpenAI-compatible router that allows CORS works) and try:
 
 - "I have 11 free hours a week. Could I finish a hackathon project that is due in six weeks?"
 - "Ask Deadline Desk which hackathons that allow generative AI close in the next eight weeks, and tell me which ones fit my week."
@@ -108,8 +110,8 @@ hosted Otari; any OpenAI-compatible router that allows CORS works) and try:
 - "Add an essay prize entry due in four weeks, and tell me if everything still fits."
 - "Can you put these in my Google Calendar and remind me?" (it declines)
 
-The 15 tests cover the network's rules, every action, the bridge, the page's own forms and
-the consent card's focus. They use the real runtime with a scripted model and call no LLM.
+The 22 tests cover the network's rules, every action, the bridge, the page's own forms,
+the consent card's focus and the default model route. They use the real runtime with a scripted model and call no LLM.
 
 ## Hosting
 
@@ -125,6 +127,12 @@ Content-Security-Policy on `runtime/sandbox-worker.js`.
 - A candidate is tested alone on top of your commitments. Two candidates that both fit may
   not fit together until one is added.
 - `write` actions run without a dialog, and each can be undone on the page.
-- Each call to Deadline Desk runs on your key after you agree, at most once per message.
+- Each call to Deadline Desk runs after you agree, at most once per message, on the same
+  model route as the rest of the chat: this site's free allowance, or your key if you added
+  one.
+- On the hosted site no key is needed. The default model route is the site's own, `/llm/v1`
+  (`llm_router.publisher_funded`, `js/funded-route.js`): one model, 250 calls a day for
+  everyone, 80 a day for one visitor, 5,000 in total, no messages stored. With your own
+  key the browser talks straight to the provider.
 
 MIT license. The runtime in `runtime/` is Apache-2.0.

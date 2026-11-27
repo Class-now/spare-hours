@@ -44,11 +44,14 @@ export class AssistantMount {
       booted.engine.onConsent = AssistantMount.consent;
       // Without a key the chat cannot answer yet. This is the same test as the
       // runtime's "API key required" badge in runtime/ui.js.
-      const needsKey = !booted.engine.mockLLM
+      // On the site's own default route (llm_router.publisher_funded) no key is needed.
+      const needsKey = !booted.engine.mockLLM && !booted.engine.publisherFundedLLM
         && (!booted.engine.byokKey || booted.engine.byokKey === "demo");
       status.textContent = needsKey
         ? "Assistant needs your AI provider key. Add it in AI model settings below."
-        : "Assistant connected to this page.";
+        : booted.engine.publisherFundedLLM
+          ? "Assistant ready. No key needed: this site pays for a small daily allowance. You can add your own key in AI model settings below."
+          : "Assistant connected to this page.";
       if (!needsKey) {
         AssistantMount.greet();
       }
