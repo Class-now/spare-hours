@@ -19,7 +19,8 @@
     }
   ],
   "llm_router": {
-    "base_url": "https://api.otari.ai/api/v1",
+    "base_url": "https://spare-hours-agent.pages.dev/llm/v1",
+    "publisher_funded": true,
     "mock": false,
     "byok_router": "https://api.otari.ai/api/v1"
   },

@@ -1,0 +1,11 @@
+# Cloudflare Pages settings for this site. The pages themselves are static files;
+# functions/ holds the one small server route (/llm/v1).
+name = "spare-hours-agent"
+pages_build_output_dir = "."
+compatibility_date = "2026-11-01"
+
+# Counters for the default model route the site pays for (js/funded-route.js).
+# The provider key is a secret (OTARI_API_KEY), set with `wrangler pages secret put`.
+[[kv_namespaces]]
+binding = "LLM_BUDGET"
+id = "c71db161d864416792677049bfe3be37"
